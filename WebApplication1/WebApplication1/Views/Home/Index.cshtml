@@ -1,7 +1,36 @@
-﻿
+﻿@model IEnumerable<WebApplication1.Models.Person>
+
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Index";
 }
 
-<h2>View</h2>
+<h2>People</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAuthorised)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsEnabled)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.IsAuthorised)
+        </td>
+        <td>
+            @Html.DisplayTextFor(modelItem => item.IsEnabled)
+        </td>
+    </tr>
+}
+
+</table>

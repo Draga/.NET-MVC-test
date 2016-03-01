@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NHSTestEntities2 : DbContext
+    public partial class NHSTestEntities : DbContext
     {
-        public NHSTestEntities2()
-            : base("name=NHSTestEntities2")
+        public NHSTestEntities()
+            : base("name=NHSTestEntities")
         {
         }
     

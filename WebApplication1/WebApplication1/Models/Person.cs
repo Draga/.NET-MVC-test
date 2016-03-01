@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace WebApplication1.Models
 {
     using System;
@@ -21,10 +24,20 @@ namespace WebApplication1.Models
         }
     
         public int PersonId { get; set; }
+
+        [DisplayName("Name")]
         public string FirstName { get; set; }
+
+        [DisplayName("Surname")]
         public string LastName { get; set; }
+
+        [DisplayName("Authorised")]
         public bool IsAuthorised { get; set; }
+
+        [DisplayName("Valid")]
         public bool IsValid { get; set; }
+
+        [DisplayName("Enabled")]
         public bool IsEnabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
