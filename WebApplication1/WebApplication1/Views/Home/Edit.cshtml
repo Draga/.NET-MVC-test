@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.Person
+
+@{
+    ViewBag.Title = "Update " + Model.FirstName;
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Person</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PersonId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsAuthorised, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsAuthorised)
+                    @Html.ValidationMessageFor(model => model.IsAuthorised, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsEnabled, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsEnabled)
+                    @Html.ValidationMessageFor(model => model.IsEnabled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10"><input type="submit" value="Save" class="btn btn-default">
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Cancel", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    
+</div>

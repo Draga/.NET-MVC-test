@@ -19,10 +19,11 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.FirstName).ToHtmlString(), "Edit", new { id = item.PersonId })
         </td>
         <td>
             @Html.DisplayTextFor(modelItem => item.IsAuthorised)
@@ -31,6 +32,6 @@
             @Html.DisplayTextFor(modelItem => item.IsEnabled)
         </td>
     </tr>
-}
+    }
 
 </table>
