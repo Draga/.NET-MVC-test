@@ -1,4 +1,5 @@
-﻿@model WebApplication1.Models.EditPersonModel
+﻿@using System.Web.UI.WebControls
+@model WebApplication1.Models.EditPersonModel
 
 @{
     ViewBag.Title = "Update " + Model.Name;
@@ -37,21 +38,11 @@
             </div>
         </div>
 
-        <h2>@Html.DisplayNameFor(model => model.FavouriteColours)</h2>
+        <h2>@Html.DisplayNameFor(model => model.ColourPreferences)</h2>
         <hr />
-        @foreach (var colour in Model.Colours)
-        {
-            <div class="form-group">
-                @Html.Label(colour.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.CheckBox(colour.Name, Model.FavouriteColours.Any(c => c.Name == colour.Name))
-                    </div>
-                </div>
-                <br />
-            </div>
-        }
-        @Html.ValidationMessageFor(model => model.FavouriteColours, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.ColourPreferences)
+        @Html.ValidationMessageFor(model => model.ColourPreferences, "", new { @class = "text-danger" })
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -67,3 +58,4 @@
 <div>
 
 </div>
+

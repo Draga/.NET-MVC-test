@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -25,21 +26,29 @@ namespace WebApplication1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Person person = await db.People.FindAsync(id);
+            Person person = await db.People
+                .Include(p => p.FavouriteColours)
+                .FirstOrDefaultAsync(p => p.PersonId == id);
 
             if (person == null)
             {
                 return HttpNotFound();
             }
 
+            var colours = db.Colours.ToList();
             var editPersonModel = new EditPersonModel()
             {
                 PersonId = person.PersonId,
                 Name = person.FirstName,
-                IsAuthorised =  person.IsAuthorised,
+                IsAuthorised = person.IsAuthorised,
                 IsEnabled = person.IsEnabled,
-                FavouriteColours = person.FavouriteColours,
-                Colours = db.Colours.ToList()
+                ColourPreferences = colours
+                    .Select(c => new ColourPreference
+                    {
+                        ColourId = c.ColourId,
+                        ColourName = c.Name,
+                        Favourite = person.FavouriteColours.Any(fc => fc.ColourId == c.ColourId)
+                    }).ToList()
             };
 
             return View(editPersonModel);
@@ -54,7 +63,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var person = db.People.FirstOrDefault(p => p.PersonId == editPersonModel.PersonId);
+                var person = db.People.Find(editPersonModel.PersonId);
 
                 if (person == null)
                 {
@@ -63,7 +72,34 @@ namespace WebApplication1.Controllers
 
                 person.IsAuthorised = editPersonModel.IsAuthorised;
                 person.IsEnabled = editPersonModel.IsEnabled;
-                person.FavouriteColours = editPersonModel.FavouriteColours;
+
+                if (editPersonModel.ColourPreferences != null)
+                {
+                    foreach (var colourPreference in editPersonModel.ColourPreferences)
+                    {
+                        if (colourPreference.Favourite)
+                        {
+                            if (!person.FavouriteColours.Any(c => c.ColourId == colourPreference.ColourId))
+                            {
+                                person.FavouriteColours.Add(db.Colours.Find(colourPreference.ColourId));
+                            }
+                        }
+                        else
+                        {
+                            var favouriteColour = person.FavouriteColours.FirstOrDefault(fc => fc.ColourId == colourPreference.ColourId);
+
+                            if (favouriteColour != null)
+                            {
+                                person.FavouriteColours.Remove(favouriteColour);
+                            }
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    person.FavouriteColours = new List<Colour>();
+                }
 
                 db.Entry(person).State = EntityState.Modified;
                 await db.SaveChangesAsync();

@@ -20,8 +20,6 @@ namespace WebApplication1.Models
 
 
         [DisplayName("Favourite Colours")]
-        public ICollection<Colour> FavouriteColours { get; set; } 
-
-        public ICollection<Colour> Colours { get; set; } 
+        public ICollection<ColourPreference> ColourPreferences { get; set; }
     }
 }
