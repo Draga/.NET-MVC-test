@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using WebApplication1.Models;
 
-namespace WebApplication1.Models
+namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
@@ -35,7 +32,16 @@ namespace WebApplication1.Models
                 return HttpNotFound();
             }
 
-            return View(person);
+            var editPersonModel = new EditPersonModel()
+            {
+                PersonId = person.PersonId,
+                Name = person.FirstName,
+                IsAuthorised =  person.IsAuthorised,
+                IsEnabled = person.IsEnabled,
+                FavouriteColours = person.FavouriteColours
+            };
+
+            return View(editPersonModel);
         }
 
         // POST: People/Edit/5
@@ -45,17 +51,25 @@ namespace WebApplication1.Models
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(EditPersonModel editPersonModel)
         {
-            var person = db.People.First(p => editPersonModel.PersonId == p.PersonId);
             if (ModelState.IsValid)
             {
+                var person = db.People.FirstOrDefault(p => p.PersonId == editPersonModel.PersonId);
+
+                if (person == null)
+                {
+                    return HttpNotFound();
+                }
+
                 person.IsAuthorised = editPersonModel.IsAuthorised;
                 person.IsEnabled = editPersonModel.IsEnabled;
+                person.FavouriteColours = editPersonModel.FavouriteColours;
+
                 db.Entry(person).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(editPersonModel);
         }
 
         protected override void Dispose(bool disposing)

@@ -14,15 +14,15 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.Colours = new HashSet<Colour>();
+            this.FavouriteColours = new HashSet<Colour>();
         }
-    
+
         public int PersonId { get; set; }
 
         [DisplayName("Name")]
@@ -39,8 +39,9 @@ namespace WebApplication1.Models
 
         [DisplayName("Enabled")]
         public bool IsEnabled { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Colour> Colours { get; set; }
+        public virtual ICollection<Colour> FavouriteColours { get; set; }
+
     }
 }

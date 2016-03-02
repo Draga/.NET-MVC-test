@@ -10,12 +10,14 @@ namespace WebApplication1.Models
     {
         public int PersonId { get; set; }
 
+        public string Name { get; set; }
+
         [DisplayName("Authorised")]
         public bool IsAuthorised { get; set; }
 
         [DisplayName("Enabled")]
         public bool IsEnabled { get; set; }
 
-        public List<Colour> FavouriteColors { get; set; } 
+        public ICollection<Colour> FavouriteColours { get; set; } 
     }
 }
