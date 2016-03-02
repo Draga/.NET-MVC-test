@@ -4,14 +4,15 @@
     ViewBag.Title = "Update " + Model.Name;
 }
 
-<h2>Edit</h2>
+<h1>@ViewBag.Title</h1>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Person</h4>
+
+        <h2>User details</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PersonId)
@@ -36,8 +37,25 @@
             </div>
         </div>
 
+        <h2>@Html.DisplayNameFor(model => model.FavouriteColours)</h2>
+        <hr />
+        @foreach (var colour in Model.Colours)
+        {
+            <div class="form-group">
+                @Html.Label(colour.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBox(colour.Name, Model.FavouriteColours.Any(c => c.Name == colour.Name))
+                    </div>
+                </div>
+                <br />
+            </div>
+        }
+        @Html.ValidationMessageFor(model => model.FavouriteColours, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10"><input type="submit" value="Save" class="btn btn-default">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default">
             </div>
             <div class="col-md-offset-2 col-md-10">
                 @Html.ActionLink("Cancel", "Index")
@@ -47,5 +65,5 @@
 }
 
 <div>
-    
+
 </div>

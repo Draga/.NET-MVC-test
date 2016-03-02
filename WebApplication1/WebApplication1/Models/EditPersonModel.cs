@@ -18,6 +18,10 @@ namespace WebApplication1.Models
         [DisplayName("Enabled")]
         public bool IsEnabled { get; set; }
 
+
+        [DisplayName("Favourite Colours")]
         public ICollection<Colour> FavouriteColours { get; set; } 
+
+        public ICollection<Colour> Colours { get; set; } 
     }
 }

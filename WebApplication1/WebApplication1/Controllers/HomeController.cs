@@ -38,7 +38,8 @@ namespace WebApplication1.Controllers
                 Name = person.FirstName,
                 IsAuthorised =  person.IsAuthorised,
                 IsEnabled = person.IsEnabled,
-                FavouriteColours = person.FavouriteColours
+                FavouriteColours = person.FavouriteColours,
+                Colours = db.Colours.ToList()
             };
 
             return View(editPersonModel);
