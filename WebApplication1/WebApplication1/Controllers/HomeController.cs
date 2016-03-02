@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
             var editPersonModel = new EditPersonModel()
             {
                 PersonId = person.PersonId,
-                Name = person.FirstName,
+                Name = person.FullName,
                 IsAuthorised = person.IsAuthorised,
                 IsEnabled = person.IsEnabled,
                 ColourPreferences = colours

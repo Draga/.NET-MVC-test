@@ -43,5 +43,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Colour> FavouriteColours { get; set; }
 
+        public string FullName { get { return FirstName + " " + LastName;} }
+
     }
 }

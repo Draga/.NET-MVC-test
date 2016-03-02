@@ -23,7 +23,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(Html.DisplayFor(modelItem => item.FirstName).ToHtmlString(), "Edit", new { id = item.PersonId })
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.FullName).ToHtmlString(), "Edit", new { id = item.PersonId })
         </td>
         <td>
             @Html.DisplayTextFor(modelItem => item.IsAuthorised)
