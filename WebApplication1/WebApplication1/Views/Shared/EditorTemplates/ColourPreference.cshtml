@@ -2,7 +2,7 @@
 
 <div class="form-group">
     @Html.HiddenFor(model => model.ColourId)
-    @Html.Label(Model.ColourName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Favourite, Model.ColourName, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         <div class="checkbox">
             @Html.CheckBoxFor(model => model.Favourite)
