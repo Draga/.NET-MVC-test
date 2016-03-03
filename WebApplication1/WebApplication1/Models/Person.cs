@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Web.Mvc.Html;
 
 namespace WebApplication1.Models
@@ -47,7 +48,19 @@ namespace WebApplication1.Models
         [DisplayName("Colours")]
         public virtual ICollection<Colour> FavouriteColours { get; set; }
 
+        [DisplayName("Name")]
         public string FullName { get { return FirstName + " " + LastName;} }
+
+        [DisplayName("Palindrome")]
+        [UIHint("ColouredYesNo")]
+        public bool IsNamePalindrome {
+            get
+            {
+                var normalisedFullName = FullName.Replace(" ", string.Empty);
+                var reversed = new string(normalisedFullName.Reverse().ToArray());
+                var isPalindrome = string.Compare(reversed, normalisedFullName, StringComparison.OrdinalIgnoreCase) == 0;
+                return isPalindrome;
+            } }
 
     }
 }

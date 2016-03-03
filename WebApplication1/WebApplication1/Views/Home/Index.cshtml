@@ -9,7 +9,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsNamePalindrome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsAuthorised)
@@ -27,6 +30,9 @@
         <tr>
             <td>
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.FullName).ToHtmlString(), "Edit", new { id = item.PersonId })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsNamePalindrome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsAuthorised)
