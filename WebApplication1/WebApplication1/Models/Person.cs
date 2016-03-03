@@ -9,20 +9,22 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc.Html;
 
 namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.Colours = new HashSet<Colour>();
+            this.FavouriteColours = new HashSet<Colour>();
         }
-    
+
         public int PersonId { get; set; }
 
         [DisplayName("Name")]
@@ -32,15 +34,33 @@ namespace WebApplication1.Models
         public string LastName { get; set; }
 
         [DisplayName("Authorised")]
+        [UIHint("ColouredYesNo")]
         public bool IsAuthorised { get; set; }
 
         [DisplayName("Valid")]
         public bool IsValid { get; set; }
 
         [DisplayName("Enabled")]
+        [UIHint("ColouredYesNo")]
         public bool IsEnabled { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Colour> Colours { get; set; }
+        [DisplayName("Colours")]
+        public virtual ICollection<Colour> FavouriteColours { get; set; }
+
+        [DisplayName("Name")]
+        public string FullName { get { return FirstName + " " + LastName;} }
+
+        [DisplayName("Palindrome")]
+        [UIHint("ColouredYesNo")]
+        public bool IsNamePalindrome {
+            get
+            {
+                var normalisedFullName = FullName.Replace(" ", string.Empty);
+                var reversed = new string(normalisedFullName.Reverse().ToArray());
+                var isPalindrome = string.Compare(reversed, normalisedFullName, StringComparison.OrdinalIgnoreCase) == 0;
+                return isPalindrome;
+            } }
+
     }
 }

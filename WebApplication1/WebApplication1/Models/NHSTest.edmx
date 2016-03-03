@@ -92,7 +92,7 @@
           <Property Name="IsAuthorised" Type="Boolean" Nullable="false" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Colours" Relationship="Self.FavouriteColours" FromRole="People" ToRole="Colours" />
+          <NavigationProperty Name="FavouriteColours" Relationship="Self.FavouriteColours" FromRole="People" ToRole="Colours" />
         </EntityType>
         <Association Name="FavouriteColours">
           <End Role="Colours" Type="Self.Colour" Multiplicity="*" />

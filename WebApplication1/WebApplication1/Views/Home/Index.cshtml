@@ -9,7 +9,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsNamePalindrome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsAuthorised)
@@ -17,20 +20,30 @@
         <th>
             @Html.DisplayNameFor(model => model.IsEnabled)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FavouriteColours)
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.FullName).ToHtmlString(), "Edit", new { id = item.PersonId })
         </td>
         <td>
-            @Html.DisplayTextFor(modelItem => item.IsAuthorised)
+            @Html.DisplayFor(modelItem => item.IsNamePalindrome)
         </td>
         <td>
-            @Html.DisplayTextFor(modelItem => item.IsEnabled)
+            @Html.DisplayFor(modelItem => item.IsAuthorised)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsEnabled)
+        </td>
+        <td>
+            @Html.Encode(string.Join(", ", item.FavouriteColours.Select(fc => fc.Name)))
         </td>
     </tr>
-}
+    }
 
 </table>
