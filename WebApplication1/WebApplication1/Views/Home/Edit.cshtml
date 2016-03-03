@@ -5,6 +5,12 @@
     ViewBag.Title = "Update " + Model.Name;
 }
 
+@section PageScripts
+{
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/editScript.js")"></script>
+}
+
 <h1>@ViewBag.Title</h1>
 
 @using (Html.BeginForm())
@@ -22,7 +28,7 @@
             @Html.LabelFor(model => model.IsAuthorised, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.IsAuthorised)
+                    @Html.CheckBoxFor(model => model.IsAuthorised, new {@class = "labelClickHides"})
                     @Html.ValidationMessageFor(model => model.IsAuthorised, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -32,7 +38,7 @@
             @Html.LabelFor(model => model.IsEnabled, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.IsEnabled)
+                    @Html.CheckBoxFor(model => model.IsEnabled, new { @class = "labelClickHides" })
                     @Html.ValidationMessageFor(model => model.IsEnabled, "", new { @class = "text-danger" })
                 </div>
             </div>
