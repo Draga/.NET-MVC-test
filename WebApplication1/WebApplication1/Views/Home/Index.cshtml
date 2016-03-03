@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.IsEnabled)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FavouriteColours)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -30,6 +33,9 @@
         </td>
         <td>
             @Html.DisplayTextFor(modelItem => item.IsEnabled)
+        </td>
+        <td>
+            @Html.Encode(string.Join(", ", item.FavouriteColours.Select(fc => fc.Name)))
         </td>
     </tr>
     }

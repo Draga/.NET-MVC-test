@@ -41,6 +41,7 @@ namespace WebApplication1.Models
         public bool IsEnabled { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DisplayName("Colours")]
         public virtual ICollection<Colour> FavouriteColours { get; set; }
 
         public string FullName { get { return FirstName + " " + LastName;} }
