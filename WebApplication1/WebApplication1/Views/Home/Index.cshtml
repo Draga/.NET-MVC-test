@@ -29,10 +29,10 @@
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.FullName).ToHtmlString(), "Edit", new { id = item.PersonId })
         </td>
         <td>
-            @Html.DisplayTextFor(modelItem => item.IsAuthorised)
+            @Html.DisplayFor(modelItem => item.IsAuthorised)
         </td>
         <td>
-            @Html.DisplayTextFor(modelItem => item.IsEnabled)
+            @Html.DisplayFor(modelItem => item.IsEnabled)
         </td>
         <td>
             @Html.Encode(string.Join(", ", item.FavouriteColours.Select(fc => fc.Name)))

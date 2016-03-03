@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc.Html;
 
 namespace WebApplication1.Models
 {
@@ -32,12 +33,14 @@ namespace WebApplication1.Models
         public string LastName { get; set; }
 
         [DisplayName("Authorised")]
+        [UIHint("ColouredYesNo")]
         public bool IsAuthorised { get; set; }
 
         [DisplayName("Valid")]
         public bool IsValid { get; set; }
 
         [DisplayName("Enabled")]
+        [UIHint("ColouredYesNo")]
         public bool IsEnabled { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

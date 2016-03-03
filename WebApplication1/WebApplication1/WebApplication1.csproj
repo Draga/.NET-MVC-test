@@ -206,6 +206,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ColourPreference.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ColouredYesNo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
